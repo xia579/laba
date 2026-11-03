@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>腊八 · 熬一锅腊八粥｜腊八节食俗文化演变</title>
+<meta name="description" content="从先秦腊祭到清代赐粥，八样粮食落进一口砂锅。可交互的腊八粥食俗文化专题。">
+<style>
+/* ============ 基础 ============ */
+:root{
+  --bg:#161010;
+  --bg2:#221715;
+  --cream:#f3e7d0;
+  --paper:#efe0c4;
+  --red:#b03a2b;
+  --red-deep:#8d2a1e;
+  --gold:#d3a355;
+  --gold-lt:#f0c46e;
+  --ink:#2a1b14;
+  --muted:rgba(243,231,208,.62);
+  --line:rgba(211,163,85,.22);
+  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif SC","SimSun",serif;
+  --sans:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 700px at 50% -12%, #3a241c 0%, transparent 62%),
+    radial-gradient(900px 640px at 88% 112%, #3d1d16 0%, transparent 58%),
+    var(--bg);
+  color:var(--cream);
+  font-family:var(--sans);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+/* 纸张颗粒 */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.045;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#snow{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:0 26px}
+h1,h2,h3{font-family:var(--serif);font-weight:400}
+.section{padding:96px 0}
+.section-narrow{max-width:880px;margin:0 auto}
+.serif{font-family:var(--serif)}
+
+/* ============ 顶部栏 ============ */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
+  padding:16px 26px;backdrop-filter:blur(10px);
+  background:linear-gradient(rgba(12,7,6,.75),rgba(12,7,6,0));pointer-events:none}
+.topbar .brand{font-family:var(--serif);letter-spacing:.3em;font-size:14px;color:var(--gold);pointer-events:auto}
+.topbar .tools{display:flex;gap:10px;pointer-events:auto}
+.icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.04);
+  color:var(--cream);cursor:pointer;font-size:15px;display:grid;place-items:center;transition:.2s}
+.icon-btn:hover{background:rgba(211,163,85,.16);border-color:rgba(211,163,85,.55)}
+
+/* ============ 首屏 ============ */
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;position:relative;padding:120px 26px 80px}
+.seal{width:66px;height:66px;margin:0 auto 30px;border-radius:6px;background:var(--red);
+  display:grid;place-items:center;color:#f7e9d2;font-family:var(--serif);font-size:22px;line-height:1.05;
+  letter-spacing:2px;box-shadow:0 0 0 1px rgba(255,235,205,.25) inset,0 12px 34px rgba(176,58,43,.35);
+  transform:rotate(-4deg)}
+.eyebrow{font-size:13px;letter-spacing:.42em;color:var(--gold);margin:0 0 22px}
+.hero h1{font-size:clamp(44px,8vw,92px);line-height:1.15;margin:0;letter-spacing:.06em}
+.hero h1 em{font-style:normal;color:var(--gold-lt);position:relative}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.42em;
+  background:linear-gradient(90deg,rgba(176,58,43,0),rgba(176,58,43,.5),rgba(176,58,43,0));z-index:-1}
+.hero .lede{margin:30px auto 0;max-width:620px;font-size:16.5px;line-height:2;color:var(--muted)}
+.hero .rhyme{margin:26px auto 0;font-family:var(--serif);font-size:15px;color:rgba(243,231,208,.5);letter-spacing:.14em}
+.cta{display:inline-flex;align-items:center;gap:12px;margin-top:44px;padding:15px 34px;border-radius:999px;
+  border:1px solid rgba(211,163,85,.5);background:rgba(211,163,85,.1);color:var(--cream);
+  font-size:15px;letter-spacing:.18em;cursor:pointer;transition:.28s;text-decoration:none}
+.cta:hover{background:rgba(211,163,85,.22);border-color:var(--gold);transform:translateY(-2px);
+  box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);font-size:12px;
+  letter-spacing:.3em;color:rgba(243,231,208,.35);animation:floatY 2.6s ease-in-out infinite}
+@keyframes floatY{50%{transform:translate(-50%,8px)}}
+
+/* ============ 章节标题 ============ */
+.sec-head{display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:44px}
+.sec-head .num{font-family:var(--serif);font-size:13px;color:var(--gold);letter-spacing:.3em;
+  border:1px solid var(--line);border-radius:999px;padding:4px 14px}
+.sec-head h2{font-size:clamp(26px,3.6vw,38px);margin:0;letter-spacing:.1em}
+.sec-head p{margin:0 0 6px;color:var(--muted);font-size:14.5px;max-width:460px}
+
+/* ============ 选食谱 ============ */
+.recipe-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:22px}
+.rc{position:relative;text-align:left;padding:28px 26px 24px;border-radius:20px;cursor:pointer;
+  border:1px solid var(--line);background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+  color:var(--cream);transition:.3s;overflow:hidden}
+.rc::before{content:"";position:absolute;inset:0;opacity:0;transition:.35s;
+  background:radial-gradient(320px 200px at 80% 0%,rgba(211,163,85,.18),transparent 70%)}
+.rc:hover{transform:translateY(-5px);border-color:rgba(211,163,85,.55);box-shadow:0 26px 60px rgba(0,0,0,.45)}
+.rc:hover::before{opacity:1}
+.rc .idx{font-family:var(--serif);font-size:13px;color:var(--gold);letter-spacing:.3em}
+.rc h3{font-size:23px;margin:12px 0 6px;letter-spacing:.06em}
+.rc .tags{display:flex;gap:8px;margin:0 0 14px}
+.rc .tag{font-size:11.5px;letter-spacing:.12em;padding:3px 10px;border-radius:999px;
+  border:1px solid rgba(211,163,85,.32);color:var(--gold)}
+.rc p{font-size:13.6px;color:var(--muted);margin:0;line-height:1.85}
+.rc .go{margin-top:20px;font-size:12.5px;letter-spacing:.24em;color:rgba(243,231,208,.5);
+  display:flex;align-items:center;gap:8px}
+.rc:hover .go{color:var(--gold-lt)}
+.rc.diy{border-color:rgba(240,196,110,.42);
+  background:linear-gradient(165deg,rgba(240,196,110,.1),rgba(255,255,255,.012))}
+.rc.diy .idx{color:var(--gold-lt)}
+.rc.diy .go{color:rgba(240,196,110,.8)}
+
+/* ============ 厨房 ============ */
+#kitchen{padding-top:64px}
+.khead{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:20px}
+.back{border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;
+  border-radius:999px;padding:7px 16px;font-size:13px;transition:.2s}
+.back:hover{color:var(--gold-lt);border-color:rgba(211,163,85,.5)}
+.khead h2{font-size:clamp(22px,3vw,30px);margin:0;letter-spacing:.08em}
+.khead .sub{font-size:13px;color:var(--muted);letter-spacing:.1em}
+
+.kitchen{display:grid;grid-template-columns:minmax(220px,290px) 1fr minmax(190px,250px);gap:34px;align-items:start}
+
+/* 步骤面板 */
+.steps{padding:22px 22px 8px;border-radius:20px;border:1px solid var(--line);position:sticky;top:80px;
+  background:linear-gradient(170deg,rgba(255,255,255,.045),rgba(255,255,255,.01))}
+.steps-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;
+  padding-bottom:14px;border-bottom:1px dashed rgba(211,163,85,.25)}
+.steps-head .k{font-family:var(--serif);font-size:15px;letter-spacing:.16em;color:var(--gold)}
+.steps-head .k2{font-size:11.5px;color:rgba(243,231,208,.4);letter-spacing:.1em}
+.step{opacity:.4;transition:.35s;margin-bottom:20px;padding-left:12px;position:relative}
+.step::before{content:"";position:absolute;left:0;top:6px;bottom:4px;width:2px;border-radius:2px;
+  background:rgba(211,163,85,.18);transition:.35s}
+.step.active{opacity:1}
+.step.active::before{background:var(--gold);box-shadow:0 0 12px rgba(211,163,85,.7)}
+.step.done{opacity:.55}
+.step.done::before{background:rgba(211,163,85,.55)}
+.step h4{font-family:var(--serif);font-size:16px;margin:0 0 3px;letter-spacing:.06em;font-weight:400}
+.step h4 b{font-family:var(--sans);font-size:11px;color:var(--gold);margin-right:8px;
+  border:1px solid rgba(211,163,85,.4);border-radius:4px;padding:1px 5px;vertical-align:2px}
+.step .note{font-size:12.5px;color:rgba(243,231,208,.45);margin:0 0 10px;line-height:1.6}
+.step .items{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:12.5px;padding:3px 11px;border-radius:999px;border:1px dashed rgba(211,163,85,.35);
+  color:rgba(243,231,208,.72);transition:.25s}
+.chip.on{border-style:solid;border-color:rgba(211,163,85,.6);background:rgba(211,163,85,.16);color:var(--gold-lt)}
+
+/* 灶台 */
+.stage{display:flex;flex-direction:column;align-items:center}
+.pot-wrap{position:relative;width:400px;height:340px;margin:0 auto}
+.ember{position:absolute;left:50%;bottom:8px;width:420px;height:150px;transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 60%,rgba(255,140,50,.34),rgba(255,90,30,.12) 45%,transparent 72%);
+  filter:blur(12px);opacity:.55;transition:.6s;z-index:0}
+.cooking .ember{opacity:1;animation:emberPulse 1.6s ease-in-out infinite}
+@keyframes emberPulse{50%{opacity:.62;transform:translateX(-50%) scale(1.07)}}
+.pot{position:relative;z-index:2;width:400px;height:340px}
+.pot.shake{animation:shake .42s}
+@keyframes shake{25%{transform:translateX(-7px) rotate(-.7deg)}75%{transform:translateX(7px) rotate(.7deg)}}
+
+/* 砂锅（SVG 绘制） */
+.potsvg{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:2;
+  filter:drop-shadow(0 18px 26px rgba(0,0,0,.45))}
+.soup{position:absolute;left:47px;top:53px;width:306px;height:66px;border-radius:50%;z-index:3;
+  opacity:.5;transition:opacity .7s;
+  background:radial-gradient(ellipse at 42% 30%,#9a6a3e,#6b4021 62%,#43260f);
+  box-shadow:inset 0 7px 16px rgba(0,0,0,.45),inset 0 -4px 10px rgba(0,0,0,.3)}
+.soup.on{opacity:1}
+.soup-dark{position:absolute;left:47px;top:53px;width:306px;height:66px;border-radius:50%;z-index:3;
+  opacity:0;transition:opacity 1s;pointer-events:none;
+  background:radial-gradient(ellipse at 42% 30%,#6b3b22,#3a1f10)}
+.contents{position:absolute;left:47px;top:53px;width:306px;height:66px;border-radius:50%;z-index:4}
+/* 蒸汽 */
+.steam{position:absolute;left:50%;top:-58px;width:220px;height:120px;transform:translateX(-50%);
+  z-index:5;opacity:0;transition:opacity .8s;pointer-events:none}
+.steam.on{opacity:1}
+.steam i{position:absolute;bottom:0;width:26px;height:96px;border-radius:50%;
+  background:linear-gradient(to top,rgba(255,246,235,.42),rgba(255,246,235,0));
+  filter:blur(9px);animation:steamUp 3.4s ease-in-out infinite}
+.steam i:nth-child(1){left:24px;animation-delay:0s}
+.steam i:nth-child(2){left:76px;animation-delay:.7s;height:112px}
+.steam i:nth-child(3){left:128px;animation-delay:1.3s}
+.steam i:nth-child(4){left:172px;animation-delay:.4s;height:84px}
+@keyframes steamUp{0%{opacity:0;transform:translateY(10px) scaleX(.7)}30%{opacity:.85}
+  100%{opacity:0;transform:translateY(-70px) scaleX(1.5)}}
+
+/* 锅内食材 */
+.ing{position:absolute;transform:translate(-50%,-50%);line-height:0;
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.75)) drop-shadow(0 0 1.5px rgba(255,240,215,.35));
+  animation:bob 4.2s ease-in-out infinite}
+@keyframes bob{50%{translate:0 -3.5px}}
+
+/* 食材图标 */
+.ic{display:block;flex:none}
+.tb .ic{width:20px;height:20px}
+
+/* 计数 */
+.stage-foot{width:100%;max-width:400px;margin-top:12px}
+.counter{display:flex;justify-content:space-between;font-size:12.5px;letter-spacing:.16em;
+  color:var(--muted);margin-bottom:9px}
+.counter b{color:var(--gold-lt);font-weight:400}
+.bar{height:3px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:3px;transition:width .55s cubic-bezier(.4,0,.2,1);
+  background:linear-gradient(90deg,var(--red),var(--gold-lt));box-shadow:0 0 12px rgba(240,196,110,.55)}
+
+/* 食材盘 */
+.tray{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px;width:100%;max-width:560px}
+.tb{display:flex;align-items:center;gap:9px;padding:9px 17px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(211,163,85,.26);background:rgba(255,255,255,.045);color:var(--cream);
+  font-size:14px;font-family:var(--sans);transition:.22s}
+.tb:hover{background:rgba(211,163,85,.16);border-color:rgba(211,163,85,.6);transform:translateY(-2px)}
+.tb .sw{width:13px;height:13px;border-radius:50%;flex:none;
+  box-shadow:inset -2px -2px 3px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.25)}
+.tb.added{opacity:.26;pointer-events:none;transform:none}
+.tb.pulse{animation:pulseIt 1s ease-out 2}
+@keyframes pulseIt{0%,100%{box-shadow:0 0 0 0 rgba(240,196,110,.6)}
+  50%{box-shadow:0 0 0 8px rgba(240,196,110,0)}}
+
+/* DIY 分组选料 */
+.tray.wide{max-width:660px;display:block}
+.tray-group{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:10px}
+.tray-group .gl{width:100%;font-size:11.5px;letter-spacing:.2em;color:rgba(211,163,85,.8);
+  margin:8px 0 2px;padding-bottom:6px;border-bottom:1px dashed rgba(211,163,85,.18)}
+.cook-btn{margin-top:16px;width:100%;padding:13px 30px;border-radius:999px;
+  border:1px solid rgba(211,163,85,.55);background:rgba(211,163,85,.14);color:var(--cream);
+  font-family:var(--sans);font-size:14px;letter-spacing:.24em;cursor:pointer;transition:.25s}
+.cook-btn:disabled{opacity:.32;cursor:not-allowed}
+.cook-btn:not(:disabled):hover{background:rgba(211,163,85,.3);transform:translateY(-2px);
+  box-shadow:0 14px 34px rgba(0,0,0,.4)}
+.step.step-diy{opacity:1;margin-bottom:16px}
+.step.step-diy::before{background:rgba(211,163,85,.4)}
+.step.step-diy.touched::before{background:var(--gold);box-shadow:0 0 12px rgba(211,163,85,.7)}
+.diy-hint{font-size:12.5px;color:rgba(243,231,208,.55);line-height:1.8;
+  border-top:1px dashed rgba(211,163,85,.2);padding-top:14px;margin:4px 0 16px}
+
+/* 侧栏提示 */
+.info{padding:22px;border-radius:20px;border:1px solid var(--line);
+  background:linear-gradient(170deg,rgba(255,255,255,.045),rgba(255,255,255,.01));position:sticky;top:88px}
+.info .lbl{font-size:11.5px;letter-spacing:.24em;color:var(--gold);margin:0 0 12px}
+.info .nm{font-family:var(--serif);font-size:21px;color:var(--gold-lt);margin:0 0 8px;letter-spacing:.08em}
+.last{display:flex;gap:14px;align-items:flex-start}
+.last-ic{flex:none;line-height:0;padding:10px;border-radius:14px;
+  background:radial-gradient(circle,rgba(211,163,85,.16),rgba(211,163,85,.03));
+  box-shadow:inset 0 0 0 1px rgba(211,163,85,.16)}
+.info .ms{font-size:13px;color:var(--muted);line-height:1.9;margin:0}
+.info .empty{font-size:13px;color:rgba(243,231,208,.36);line-height:1.9;margin:0}
+.info hr{border:0;border-top:1px dashed rgba(211,163,85,.2);margin:18px 0}
+.info .tip{font-size:12.5px;color:rgba(243,231,208,.5);line-height:1.9;margin:0}
+.toast{position:absolute;left:50%;top:0;transform:translate(-50%,-10px);z-index:20;
+  padding:9px 18px;border-radius:999px;background:rgba(30,16,12,.94);border:1px solid rgba(211,163,85,.4);
+  color:var(--gold-lt);font-size:13px;white-space:nowrap;opacity:0;transition:.3s;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,8px)}
+
+/* ============ 火候校准 ============ */
+.game{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:24px;
+  background:rgba(10,6,5,.8);backdrop-filter:blur(7px);animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0}}
+.gcard{width:min(580px,94vw);padding:34px 38px 30px;border-radius:22px;text-align:center;
+  background:linear-gradient(168deg,#2a1b15,#170f0c);border:1px solid rgba(211,163,85,.3);
+  box-shadow:0 36px 90px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,220,170,.1)}
+.gcard .g-top{font-size:11.5px;letter-spacing:.3em;color:var(--gold);margin:0 0 14px}
+.gcard h3{font-size:26px;margin:0 0 6px;letter-spacing:.1em;color:var(--cream)}
+.gcard .g-note{font-size:13px;color:var(--muted);margin:0}
+.gauge{position:relative;height:36px;margin:30px 0 20px;border-radius:999px;overflow:hidden;
+  background:#0c0705;border:1px solid rgba(211,163,85,.28);
+  box-shadow:inset 0 4px 14px rgba(0,0,0,.8)}
+.gauge .good{position:absolute;top:0;bottom:0;
+  background:linear-gradient(90deg,rgba(211,163,85,.1),rgba(211,163,85,.3),rgba(211,163,85,.1))}
+.gauge .perfect{position:absolute;top:0;bottom:0;
+  background:linear-gradient(180deg,rgba(255,236,180,.95),rgba(240,196,110,.75));
+  box-shadow:0 0 26px rgba(255,206,120,.8)}
+.needle{position:absolute;top:-5px;bottom:-5px;width:4px;border-radius:2px;left:0;
+  background:linear-gradient(#fff,#ffd68f);box-shadow:0 0 16px rgba(255,214,143,.95)}
+.g-feed{height:30px;font-family:var(--serif);font-size:19px;letter-spacing:.16em;
+  color:var(--gold-lt);opacity:0;transition:.2s}
+.g-feed.on{opacity:1}
+.g-feed.bad{color:#e0735f}
+.g-hint{font-size:12.5px;color:rgba(243,231,208,.45);letter-spacing:.1em;margin:6px 0 0}
+.dots{display:flex;gap:9px;justify-content:center;margin-top:20px}
+.dots span{width:8px;height:8px;border-radius:50%;background:rgba(243,231,208,.18);transition:.3s}
+.dots span.p{background:var(--gold-lt);box-shadow:0 0 10px rgba(240,196,110,.8)}
+.dots span.g{background:rgba(211,163,85,.55)}
+.dots span.b{background:#8c3a2c}
+
+/* 熬煮中 */
+.boiling{position:fixed;inset:0;z-index:88;display:grid;place-items:center;
+  background:rgba(10,6,5,.72);backdrop-filter:blur(4px)}
+.boiling p{font-family:var(--serif);font-size:20px;letter-spacing:.4em;color:var(--gold-lt)}
+.boiling .bbar{width:240px;height:2px;margin-top:20px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
+.boiling .bbar i{display:block;height:100%;width:0;background:var(--gold-lt);animation:grow 2.6s ease-in-out forwards}
+@keyframes grow{to{width:100%}}
+
+/* ============ 成品 ============ */
+.result-hero{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center}
+@media(max-width:820px){.result-hero{grid-template-columns:1fr;gap:34px;justify-items:center;text-align:center}}
+.bowl-stage{position:relative;width:300px;height:260px}
+.bowl{position:absolute;left:10px;top:26px;width:280px;height:190px}
+.bowl-body{position:absolute;left:0;top:36px;width:280px;height:126px;
+  border-radius:0 0 50% 50%/0 0 74% 74%;
+  background:linear-gradient(100deg,#fdf8ec 6%,#eadfc9 48%,#b6a48a);
+  box-shadow:inset -20px 0 34px rgba(0,0,0,.14),inset 18px 0 26px rgba(255,255,255,.4)}
+.bowl-rim{position:absolute;left:0;top:0;width:280px;height:72px;border-radius:50%;
+  background:linear-gradient(#f4ebd8,#d5c4a7);box-shadow:0 3px 0 #c6b498}
+.bowl-soup{position:absolute;left:20px;top:12px;width:240px;height:48px;border-radius:50%;
+  background:
+    radial-gradient(circle at 28% 42%,#8f2b20 0 4.5px,transparent 5.5px),
+    radial-gradient(circle at 62% 62%,#b8792f 0 4px,transparent 5px),
+    radial-gradient(circle at 79% 34%,#e8dcc0 0 3.5px,transparent 4.5px),
+    radial-gradient(circle at 44% 72%,#a8322b 0 3px,transparent 4px),
+    radial-gradient(circle at 12% 66%,#d9b862 0 3px,transparent 4px),
+    radial-gradient(ellipse at 40% 26%,#c68d4d,#7d4a25 62%,#4b2914);
+  box-shadow:inset 0 5px 12px rgba(0,0,0,.4)}
+.bowl-foot{position:absolute;left:104px;top:156px;width:72px;height:16px;border-radius:0 0 10px 10px;
+  background:linear-gradient(#d5c4a7,#a89880)}
+.bowl-sh{position:absolute;left:48px;top:196px;width:204px;height:14px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(0,0,0,.55),transparent 72%)}
+.bowl-stage .steam{top:-16px;left:50%;width:200px;height:120px}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:999px;
+  border:1px solid rgba(211,163,85,.5);background:rgba(211,163,85,.12);color:var(--gold-lt);
+  font-size:13px;letter-spacing:.18em;margin-bottom:18px}
+.result-hero h2{font-size:clamp(28px,4.4vw,44px);margin:0 0 14px;letter-spacing:.08em}
+.result-hero .story{color:var(--muted);font-size:15px;line-height:2;margin:0;max-width:560px;white-space:pre-line}
+.meaning{margin-top:48px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.mi{padding:16px 18px;border-radius:14px;border:1px solid rgba(211,163,85,.16);
+  background:rgba(255,255,255,.028)}
+.mi .n{font-family:var(--serif);font-size:16px;color:var(--gold-lt);margin:0 0 5px;letter-spacing:.1em;
+  display:flex;align-items:center;gap:9px}
+.mi .t{font-size:12.5px;color:rgba(243,231,208,.55);margin:0;line-height:1.8}
+.acts{display:flex;gap:14px;margin-top:44px;flex-wrap:wrap}
+
+/* ============ 时序 ============ */
+.tl{position:relative;padding-left:36px;margin-top:12px}
+.tl::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:1px;
+  background:linear-gradient(transparent,rgba(211,163,85,.55),rgba(211,163,85,.2),transparent)}
+.ti{position:relative;margin-bottom:36px}
+.ti:last-child{margin-bottom:0}
+.ti::before{content:"";position:absolute;left:-35px;top:9px;width:9px;height:9px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 0 5px rgba(211,163,85,.1),0 0 14px rgba(211,163,85,.5)}
+.ti .era{font-family:var(--serif);font-size:13px;letter-spacing:.26em;color:var(--gold)}
+.ti h3{font-size:20px;margin:7px 0 8px;letter-spacing:.07em}
+.ti p{margin:0;font-size:14.5px;color:var(--muted);line-height:2;max-width:760px}
+.ti .src{display:block;margin-top:8px;font-size:12px;color:rgba(243,231,208,.34);letter-spacing:.06em}
+
+/* 尾声 */
+.finale{text-align:center;padding:110px 0 90px}
+.finale .poem{font-family:var(--serif);font-size:clamp(16px,2.2vw,21px);line-height:2.4;
+  color:rgba(243,231,208,.72);letter-spacing:.1em;margin:0}
+.finale .poem span{color:var(--gold-lt)}
+.seal-b{width:52px;height:52px;margin:44px auto 0;border-radius:5px;background:var(--red-deep);
+  display:grid;place-items:center;color:#f7e9d2;font-family:var(--serif);font-size:17px;line-height:1.05;
+  letter-spacing:1px;transform:rotate(3deg);box-shadow:inset 0 0 0 1px rgba(255,235,205,.2)}
+footer{border-top:1px solid rgba(211,163,85,.14);padding:28px 0 40px;text-align:center;
+  font-size:12px;color:rgba(243,231,208,.3);letter-spacing:.14em}
+
+/* ============ 独立视图（熬粥 / 成品） ============ */
+body.mode-cook .hero, body.mode-cook #culture, body.mode-cook .finale, body.mode-cook footer,
+body.mode-result .hero, body.mode-result #culture, body.mode-result .finale, body.mode-result footer{display:none}
+body.mode-cook #kitchen, body.mode-result #result{animation:pageIn .5s cubic-bezier(.2,.7,.3,1)}
+@keyframes pageIn{from{opacity:0;transform:translateY(18px)}}
+
+/* 入场动效 */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* 响应式 */
+@media(max-width:980px){
+  .kitchen{grid-template-columns:1fr;gap:26px}
+  .info{position:static;order:2}
+  .stage{order:0}
+  .steps{order:1;position:static;margin-top:8px}
+  .pot-wrap{transform:scale(.92);margin-bottom:-10px}
+}
+@media(max-width:520px){
+  .section{padding:70px 0}
+  .pot-wrap{transform:scale(.78);margin:-30px 0 -34px}
+  .gcard{padding:26px 20px}
+  .tray{gap:8px}
+  .tb{padding:8px 14px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<canvas id="snow"></canvas>
+
+<!-- 食材图标库（手绘 SVG） -->
+<svg id="sprite" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="i-bean" viewBox="0 0 24 24">
+    <ellipse cx="12" cy="12" rx="7" ry="5" transform="rotate(-20 12 12)" fill="currentColor"/>
+    <path d="M8.6 10.2c1.5-1 3.2-1.1 4.9-.3" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-chickpea" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="7.2" fill="currentColor"/>
+    <path d="M16.2 7.6c1 1.1.9 2.4-.2 3.2-1 .7-2.4.5-3.2-.5" fill="none" stroke="#000" stroke-opacity=".25" stroke-width="1.8" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-grain" viewBox="0 0 24 24">
+    <ellipse cx="12" cy="12" rx="3.8" ry="8" transform="rotate(25 12 12)" fill="currentColor"/>
+    <path d="M12 6.2v11.6" stroke="#000" stroke-opacity=".15" stroke-width="1"/>
+  </symbol>
+  <symbol id="i-seed" viewBox="0 0 24 24">
+    <ellipse cx="12" cy="12" rx="5.4" ry="7" fill="currentColor"/>
+    <ellipse cx="12" cy="7.6" rx="1.6" ry="1.1" fill="#000" fill-opacity=".18"/>
+  </symbol>
+  <symbol id="i-date" viewBox="0 0 24 24">
+    <ellipse cx="12" cy="12" rx="8.2" ry="5.2" transform="rotate(-22 12 12)" fill="currentColor"/>
+    <path d="M6.6 10c2.6.4 5.2 0 7.4-1.4M8 13.4c2.4.5 4.6.2 6.4-.8" fill="none" stroke="#000" stroke-opacity=".22" stroke-width="1.1" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-nut" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="7.4" fill="currentColor"/>
+    <ellipse cx="9.6" cy="9.4" rx="2.4" ry="1.8" fill="#fff" fill-opacity=".25"/>
+  </symbol>
+  <symbol id="i-walnut" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="7.6" fill="currentColor"/>
+    <path d="M12 5.4v13.2M9 8.6c1.2 1 1.2 2.4 0 3.4s-1.2 2.4 0 3.4M15 8.6c-1.2 1-1.2 2.4 0 3.4s1.2 2.4 0 3.4" fill="none" stroke="#000" stroke-opacity=".26" stroke-width="1.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-chestnut" viewBox="0 0 24 24">
+    <path d="M12 4.6c2 0 3.2 1.6 4.4 4 1.3 2.6 2 5.6 1 7.6-1 1.9-3.1 3.2-5.4 3.2s-4.4-1.3-5.4-3.2c-1-2-.3-5 1-7.6 1.2-2.4 2.4-4 4.4-4z" fill="currentColor"/>
+    <path d="M9.4 15.4c1.6 1.4 3.6 1.4 5.2 0" fill="none" stroke="#fff" stroke-opacity=".32" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-persimmon" viewBox="0 0 24 24">
+    <ellipse cx="12" cy="12.6" rx="7.8" ry="5.6" fill="currentColor"/>
+    <path d="M12 7v11.2M7.4 10.4c3 1.6 6.2 1.6 9.2 0" fill="none" stroke="#000" stroke-opacity=".2" stroke-width="1.1"/>
+  </symbol>
+  <symbol id="i-petal" viewBox="0 0 24 24">
+    <path d="M12 5.4c1.6 2.2 2.2 4.4 2 6.6-.2 2.6-1.2 4.6-2 6.6-.8-2-1.8-4-2-6.6-.2-2.2.4-4.4 2-6.6z" fill="currentColor"/>
+    <path d="M12 6.6c2.6 1.4 4.4 3.4 5 6-.4 2-1.4 3.6-2.6 4.8" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M12 6.6c-2.6 1.4-4.4 3.4-5 6 .4 2 1.4 3.6 2.6 4.8" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24">
+    <rect x="5.4" y="5.4" width="13.2" height="13.2" rx="2.6" fill="currentColor"/>
+    <path d="M5.4 10.6h13.2" stroke="#000" stroke-opacity=".1" stroke-width="1"/>
+    <path d="M8.8 6.4c.8.8.8 1.8 0 2.6" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.1" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-meat" viewBox="0 0 24 24">
+    <path d="M4.6 13.4c-.6-3.4 1.6-6.6 5-7.4 3.4-.8 6.8 1 7.8 4.2.8 2.6-.4 5.4-2.8 6.8-2.6 1.4-6 .6-7.6-1.6-.8-1-.6-2-.4-2z" fill="currentColor"/>
+    <path d="M8 12.4c2 .6 4.4.4 6.6-.6" fill="none" stroke="#fff" stroke-opacity=".42" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-sausage" viewBox="0 0 24 24">
+    <g transform="rotate(-16 12 12)">
+      <rect x="3.4" y="9" width="17.2" height="6" rx="3" fill="currentColor"/>
+      <path d="M7.6 10.4c1.2 1.6 1.2 3.2 0 4.8M12 10c1.2 1.6 1.2 3.2 0 4.8" fill="none" stroke="#000" stroke-opacity=".16" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+  </symbol>
+  <symbol id="i-noodle" viewBox="0 0 24 24">
+    <path d="M3.6 8.4c3.4-1.6 6.8-1.6 10.2 0s6.4 1.4 6.6.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M3.6 13.4c3.4-1.6 6.8-1.6 10.2 0s6.4 1.4 6.6.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".85"/>
+    <path d="M3.6 18c3.4-1.6 6.8-1.6 10.2 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+  <symbol id="i-dot" viewBox="0 0 24 24">
+    <circle cx="9" cy="9.6" r="2.8" fill="currentColor"/>
+    <circle cx="15" cy="12.4" r="2.4" fill="currentColor" opacity=".85"/>
+    <circle cx="10.6" cy="16" r="2" fill="currentColor" opacity=".7"/>
+  </symbol>
+  <symbol id="i-mushroom" viewBox="0 0 24 24">
+    <path d="M3.6 12c0-4.2 3.8-7.4 8.4-7.4s8.4 3.2 8.4 7.4c0 1.4-1 2.2-2.4 2.2H6c-1.4 0-2.4-.8-2.4-2.2z" fill="currentColor"/>
+    <path d="M9.6 14.6h4.8v3.2c0 1.2-.9 2-2.4 2s-2.4-.8-2.4-2z" fill="currentColor" opacity=".5"/>
+    <circle cx="9" cy="10" r="1" fill="#fff" fill-opacity=".3"/>
+    <circle cx="14.4" cy="8.6" r=".9" fill="#fff" fill-opacity=".26"/>
+  </symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24">
+    <path d="M12 4.4c4.6 1.8 7 5.4 6.4 10.2-.4 3-2.4 4.6-6.4 4.6s-6-1.6-6.4-4.6C5 9.8 7.4 6.2 12 4.4z" fill="currentColor"/>
+    <path d="M12 7v11" stroke="#fff" stroke-opacity=".45" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M12 10.6c-1.4.8-2.2 1.8-2.6 3M12 13.4c1.2.6 2 1.4 2.4 2.6" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1.1" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-raisin" viewBox="0 0 24 24">
+    <ellipse cx="12" cy="12" rx="7" ry="6" fill="currentColor"/>
+    <path d="M9 8.4c-1 1.4-1 3 0 4.4M13.4 8c-1 1.6-1 3.4 0 5M16.4 10.4c-.6 1-.6 2.2 0 3.2" fill="none" stroke="#000" stroke-opacity=".22" stroke-width="1.1" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-shrimp" viewBox="0 0 24 24">
+    <path d="M16.6 6.4c-4.6-1.4-8.8 1-9.6 5.2-.8 4 2 7 5.8 7.4 2 .2 3.6-.4 4.6-1.6" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>
+    <circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-peanut" viewBox="0 0 24 24">
+    <path d="M12 4.4c2.6 0 4.4 1.8 4.4 4 0 1.6-.8 2.6-.8 3.6s.8 2 .8 3.6c0 2.2-1.8 4-4.4 4s-4.4-1.8-4.4-4c0-1.6.8-2.6.8-3.6s-.8-2-.8-3.6c0-2.2 1.8-4 4.4-4z" fill="currentColor"/>
+    <path d="M8.4 11.6h7.2" stroke="#000" stroke-opacity=".16" stroke-width="1.2"/>
+  </symbol>
+</svg>
+
+<div class="topbar">
+  <div class="brand">腊 · 八</div>
+  <div class="tools">
+    <button class="icon-btn" id="muteBtn" title="声音开关">♪</button>
+    <button class="icon-btn" id="topBtn" title="回到顶部">↑</button>
+  </div>
+</div>
+
+<!-- ================= 首屏 ================= -->
+<header class="hero">
+  <div class="wrap">
+    <div class="seal">腊日</div>
+    <p class="eyebrow">农历十二月初八 · 岁终之月</p>
+    <h1>熬一锅<em>腊八粥</em></h1>
+    <p class="lede">
+      先秦的腊祭烟火，佛寺的七宝五味，清宫的铜锅赐粥——
+      两千年的岁时流转，最后都落进一口砂锅里。
+    </p>
+    <p class="rhyme">小孩小孩你别馋 · 过了腊八就是年</p>
+    <a class="cta" href="#pick">选一道食谱，动手熬粥 →</a>
+    <div class="scroll-hint">向下滚动</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= 选食谱 ================= -->
+  <section class="section" id="pick">
+    <div class="sec-head reveal">
+      <span class="num">壹</span>
+      <h2>择一方水土的粥</h2>
+      <p>同样一碗腊八粥，过了淮河就换了滋味。挑一道，按食谱的工序下料。</p>
+    </div>
+    <div class="recipe-grid" id="recipeGrid"></div>
+  </section>
+
+  <!-- ================= 厨房 ================= -->
+  <section class="section" id="kitchen" hidden>
+    <div class="khead">
+      <button class="back" id="backBtn">← 换一道食谱</button>
+      <h2 id="kTitle">—</h2>
+      <span class="sub" id="kSub">—</span>
+    </div>
+
+    <div class="kitchen">
+      <aside class="steps" id="steps"></aside>
+
+      <div class="stage">
+        <div class="pot-wrap">
+          <div class="ember" id="ember"></div>
+          <div class="pot" id="pot">
+            <div class="steam" id="steam"><i></i><i></i><i></i><i></i></div>
+            <svg class="potsvg" viewBox="0 0 400 340" aria-hidden="true">
+              <defs>
+                <linearGradient id="clay" x1="0" y1="0" x2="1" y2=".55">
+                  <stop offset="0" stop-color="#2e1b12"/>
+                  <stop offset=".13" stop-color="#71482b"/>
+                  <stop offset=".32" stop-color="#9d6a42"/>
+                  <stop offset=".52" stop-color="#8a5a37"/>
+                  <stop offset=".76" stop-color="#5a3822"/>
+                  <stop offset="1" stop-color="#22130c"/>
+                </linearGradient>
+                <radialGradient id="sheen" cx=".34" cy=".1" r=".62">
+                  <stop offset="0" stop-color="#ffd8a4" stop-opacity=".34"/>
+                  <stop offset="1" stop-color="#ffd8a4" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="hole" cx=".5" cy=".4" r=".7">
+                  <stop offset="0" stop-color="#2d1a11"/>
+                  <stop offset=".7" stop-color="#140b06"/>
+                  <stop offset="1" stop-color="#080402"/>
+                </radialGradient>
+                <linearGradient id="lip" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#8e5f3c"/>
+                  <stop offset=".48" stop-color="#5e3a25"/>
+                  <stop offset="1" stop-color="#382115"/>
+                </linearGradient>
+              </defs>
+              <ellipse cx="200" cy="308" rx="150" ry="19" fill="#000" opacity=".5"/>
+              <path d="M36,116 C6,120 3,152 28,160" fill="none" stroke="#6b452d" stroke-width="12" stroke-linecap="round"/>
+              <path d="M364,116 C394,120 397,152 372,160" fill="none" stroke="#6b452d" stroke-width="12" stroke-linecap="round"/>
+              <path d="M32,86 A168,44 0 0 1 368,86 C363,184 330,280 200,280 C70,280 37,184 32,86 Z" fill="url(#clay)"/>
+              <path d="M32,86 A168,44 0 0 1 368,86 C363,184 330,280 200,280 C70,280 37,184 32,86 Z" fill="url(#sheen)"/>
+              <path d="M112,168 C118,214 136,252 168,268" fill="none" stroke="#ffd9a8" stroke-width="10" stroke-linecap="round" opacity=".13"/>
+              <path d="M60,196 C70,236 96,268 130,278" fill="none" stroke="#000" stroke-width="14" stroke-linecap="round" opacity=".18"/>
+              <ellipse cx="200" cy="86" rx="176" ry="50" fill="url(#lip)"/>
+              <ellipse cx="200" cy="86" rx="176" ry="50" fill="none" stroke="#231309" stroke-width="2" opacity=".55"/>
+              <ellipse cx="200" cy="86" rx="158" ry="38" fill="url(#hole)"/>
+              <ellipse cx="200" cy="86" rx="158" ry="38" fill="none" stroke="#3a2116" stroke-width="5" opacity=".9"/>
+            </svg>
+            <div class="soup" id="soup"></div>
+            <div class="soup-dark" id="soupDark"></div>
+            <div class="contents" id="contents"></div>
+          </div>
+          <div class="toast" id="toast"></div>
+        </div>
+
+        <div class="stage-foot">
+          <div class="counter">
+            <span id="stepLabel">第一道工序</span>
+            <span><b id="count">0</b> / <span id="total">9</span> 样</span>
+          </div>
+          <div class="bar"><i id="bar"></i></div>
+        </div>
+
+        <div class="tray" id="tray"></div>
+      </div>
+
+      <aside class="info">
+        <p class="lbl">刚刚下锅</p>
+        <div id="lastInfo"><p class="empty">锅已洗净，火已备好。<br>按左侧食谱的顺序，把食材放进锅里。</p></div>
+        <hr>
+        <p class="tip" id="infoTip">—</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= 成品 ================= -->
+  <section class="section" id="result" hidden>
+    <div class="result-hero">
+      <div class="bowl-stage">
+        <div class="steam on"><i></i><i></i><i></i><i></i></div>
+        <div class="bowl">
+          <div class="bowl-body"></div>
+          <div class="bowl-sh"></div>
+          <div class="bowl-foot"></div>
+          <div class="bowl-rim"></div>
+          <div class="bowl-soup"></div>
+        </div>
+      </div>
+      <div>
+        <div class="badge" id="rBadge">—</div>
+        <h2 id="rTitle">—</h2>
+        <p class="story" id="rStory"></p>
+      </div>
+    </div>
+    <div class="meaning" id="rMeaning"></div>
+    <div class="acts">
+      <button class="cta" id="againBtn">再熬一锅</button>
+      <button class="back" id="pickBtn" style="align-self:center">换一道食谱</button>
+      <button class="back" id="readBtn" style="align-self:center">读读这碗粥的来历 →</button>
+    </div>
+  </section>
+
+  <!-- ================= 食俗演变 ================= -->
+  <section class="section section-narrow" id="culture">
+    <div class="sec-head reveal">
+      <span class="num">贰</span>
+      <h2>一碗粥的两千年</h2>
+      <p>腊八粥不是某一天忽然出现的。它是祭祀、宗教、物产与气候，一层层叠出来的。</p>
+    </div>
+    <div class="tl" id="timeline"></div>
+  </section>
+
+  <!-- ================= 尾声 ================= -->
+  <section class="finale">
+    <p class="poem reveal">
+      小孩小孩你别馋，<span>过了腊八就是年</span>。<br>
+      腊八粥，喝几天，哩哩啦啦二十三。<br>
+      二十三，糖瓜粘；二十四，扫房子；<br>
+      二十五，冻豆腐；二十六，去买肉；<br>
+      二十七，宰公鸡；二十八，把面发；<br>
+      二十九，蒸馒头；三十晚上熬一宿，<br>
+      大年初一扭一扭。
+    </p>
+    <div class="seal-b">年味</div>
+  </section>
+</main>
+
+<footer>腊八 · 熬一锅腊八粥　|　一份关于食俗的小小互动</footer>
+
+<!-- ================= 火候校准 ================= -->
+<div class="game" id="game" hidden>
+  <div class="gcard">
+    <p class="g-top" id="gTop">第 一 道 火</p>
+    <h3 id="gTitle">武火催沸</h3>
+    <p class="g-note" id="gNote">—</p>
+    <div class="gauge" id="gauge">
+      <div class="good" id="gGood"></div>
+      <div class="perfect" id="gPerfect"></div>
+      <div class="needle" id="gNeedle"></div>
+    </div>
+    <div class="g-feed" id="gFeed"></div>
+    <p class="g-hint">指针落入金色区域时点击，或按空格</p>
+    <div class="dots" id="gDots"><span></span><span></span><span></span></div>
+  </div>
+</div>
+
+<div class="boiling" id="boiling" hidden>
+  <div style="text-align:center">
+    <p>熬 煮 中</p>
+    <div class="bbar"><i></i></div>
+  </div>
+</div>
+
+<script>
+/* ==================================================================
+   数据层
+   ================================================================== */
+
+/* 食材库：色 / 形 / 寓意 */
+const ING = {
+  '红豆':   { c:'#a8322b', s:'bean',   m:'赤豆驱疫，古人腊日以赤豆粥辟邪。色红，寓日子红火。' },
+  '花生':   { c:'#c98b53', s:'bean',   m:'又名长生果。一锅粥里最不起眼，却最耐熬，寓意绵长。' },
+  '莲子':   { c:'#e8dcc0', s:'bean',   m:'莲心微苦。粥成回甘，取「连年有余」之意。' },
+  '糯米':   { c:'#efe6d2', s:'grain',  m:'黏合百味。腊八粥能「成粥」，全靠它把八样拢在一起。' },
+  '小米':   { c:'#e0b64a', s:'grain',  m:'五谷之本，北方人家灶下的常备，垫底生香。' },
+  '薏米':   { c:'#ddd3bb', s:'grain',  m:'古称薏苡。冬日祛湿暖身，是粥里的老规矩。' },
+  '红枣':   { c:'#8f2b20', s:'date',   m:'「早」生贵子，日子红火。腊八粥的甜，一半来自它。' },
+  '桂圆':   { c:'#b8792f', s:'nut',    m:'龙眼干，圆润如珠，取团圆圆满。' },
+  '核桃':   { c:'#a87b52', s:'nut',    m:'「核」家欢乐，和合美满。嚼得到，才叫扎实。' },
+  '赤小豆': { c:'#9c2f28', s:'bean',   m:'与红豆并非一物，粒小色艳。腊日逐疫，用的正是它。' },
+  '芡实':   { c:'#e3d7b8', s:'bean',   m:'水中人参，苏杭人熬粥必放，取其温厚。' },
+  '血糯米': { c:'#5b2b2a', s:'grain',  m:'染得整锅粥紫红，是江南粥色好看的关键。' },
+  '栗子':   { c:'#8a5a2b', s:'nut',    m:'「栗」谐「立」，取利市、立身之意。' },
+  '桂花':   { c:'#e6b422', s:'dot',    m:'一点糖桂花，香出半条巷子。富贵、贵气，皆在香里。' },
+  '黄豆':   { c:'#d9b862', s:'bean',   m:'金豆满仓。西北人熬咸粥，先下它垫底。' },
+  '扁豆':   { c:'#c9c07a', s:'bean',   m:'形扁而耐煮，取平顺安康。' },
+  '黄米':   { c:'#d8a63f', s:'grain',  m:'古称黍，北方最老的粮食之一，黏而香。' },
+  '豆腐':   { c:'#f0ead8', s:'cube',   m:'「豆腐」谐「都福」。放进咸粥，一锅就有了年菜的样子。' },
+  '腊肉':   { c:'#8c3b2a', s:'meat',   m:'腌了一冬的咸香，粥一滚，整间屋子都是年味。' },
+  '粉条':   { c:'#d8cdb4', s:'noodle', m:'长而不断，取长长久久。吸饱汤汁才好吃。' },
+  /* —— 新增 —— */
+  '大米':   { c:'#f6f0e0', s:'grain',  m:'最温和的底子。粥要稠靠糯米，要清爽就靠它。' },
+  '黑米':   { c:'#402a33', s:'grain',  m:'用得少，染得深。粥色乌亮，民间说补血。' },
+  '燕麦':   { c:'#dccfae', s:'grain',  m:'滑润。出锅前二十分钟再放，还能留住一点嚼劲。' },
+  '绿豆':   { c:'#7f9155', s:'bean',   m:'清热。它是腊八粥里给油腻留的退路。' },
+  '芸豆':   { c:'#a8564a', s:'bean',   m:'花纹豆，煮到粉糯，是八宝粥里的「肉感」。' },
+  '鹰嘴豆': { c:'#cbb079', s:'bean',   m:'西域来的豆子，板栗般的粉香。泡足四小时才算准备好。' },
+  '豇豆':   { c:'#8a3a2e', s:'bean',   m:'孔府细粥与山西八宝粥的头一味。豆要煮到皮开，汤才红。' },
+  '葡萄干': { c:'#6b3a4a', s:'dot',    m:'最省事的甜。最后放，煮久了会发酸。' },
+  '百合':   { c:'#f2eddf', s:'cube',   m:'瓣瓣如玉，润。孔府细粥里的一味雅物。' },
+  '萝卜':   { c:'#eef2e4', s:'cube',   m:'咸粥里的清甜。先下锅，甜才化得进汤里。' },
+  '香菇':   { c:'#6b4a33', s:'nut',    m:'鲜味的来路。干香菇泡开的水，比什么调料都好。' },
+  '瘦肉丁': { c:'#b4695a', s:'meat',   m:'咸口粥的底气。先用酱油抓过，下锅才不柴。' },
+  '红薯':   { c:'#c9702f', s:'cube',   m:'晋东南人腊月初五就放它，甜得朴素。' },
+  '柿饼':   { c:'#b5502b', s:'nut',    m:'霜白肉红，是山西冬天存下来的糖。' },
+  '香肠':   { c:'#a8342a', s:'meat',   m:'川味腊味的另一半。切薄片，油一化就香。' },
+  '海米':   { c:'#d98b4f', s:'dot',    m:'小小一把，整锅鲜。川人熬咸粥的老办法。' },
+  '火腿':   { c:'#b0503f', s:'meat',   m:'孔府吊鲜用火腿，不肯用盐将就。' },
+  '白菜':   { c:'#e8f0d8', s:'cube',   m:'粗粥里的当家菜。煮到透明，汤就甜了。' },
+};
+const ing_ = n => ING[n] || { c:'#c9a06b', s:'bean', m:'一锅粥里的一味。' };
+
+/* 图标映射：少数几味换用更贴切的造型 */
+const ICON_MAP = {
+  '鹰嘴豆':'chickpea', '花生':'peanut', '莲子':'seed', '芡实':'seed',
+  '核桃':'walnut', '栗子':'chestnut', '柿饼':'persimmon', '百合':'petal',
+  '香菇':'mushroom', '白菜':'leaf', '香肠':'sausage', '海米':'shrimp', '葡萄干':'raisin'
+};
+function iconHTML(name, size){
+  const it = ing_(name);
+  const sym = ICON_MAP[name] || it.s || 'bean';
+  return '<svg class="ic" viewBox="0 0 24 24" style="width:'+size+'px;height:'+size+
+         'px;color:'+it.c+'"><use href="#i-'+sym+'"/></svg>';
+}
+
+/* 食谱：groups 即教程工序，组内顺序不计 */
+const RECIPES = [
+  {
+    id:'beijing', no:'其一', name:'老北京八宝粥', region:'北方', taste:'甜',    desc:'宫廷与寺庙的路子。九样料、小火慢熬，米豆开花，汤色转紫。',
+    groups:[
+      { label:'先下豆', note:'豆粒最难烂，冷水时就下锅，才熬得开花。', items:['红豆','花生','莲子'] },
+      { label:'再下米', note:'米要后放。水滚下米，勤搅，免得糊底。', items:['糯米','小米','薏米'] },
+      { label:'最后果干', note:'甜味最后出。果干久煮会烂，收汤前再放。', items:['红枣','桂圆','核桃'] },
+    ],
+    story:'清代腊八，雍和宫架起大铜锅，从初七夜里熬到初八天亮。粥成先供佛，再由内廷分赐王公大臣，谓之「赐腊八粥」。民间照这个排场凑足八样，讲究「七分水、三分火」，熬到米豆开花、汤色转紫，才算成。',
+    tip:'老北京熬粥，头天晚上就要把豆子泡上。第二天凌晨生火，天亮揭锅。'
+  },
+  {
+    id:'shanxi', no:'其二', name:'山西八宝粥', region:'晋中', taste:'甜',
+    desc:'小米打底，黏黄米收口。黄土坡上的耐旱作物，一锅都是本地的甜。',
+    groups:[
+      { label:'先下豆', note:'豇豆、红小豆、绿豆一同下冷水，煮到豆皮裂开。', items:['豇豆','红豆','绿豆'] },
+      { label:'再下米', note:'小米打底，黏黄米添黏，江米把整锅粥拢住。', items:['小米','黄米','糯米'] },
+      { label:'最后添甜', note:'小枣、红薯、柿饼最后放，甜才不会被煮飞。', items:['红枣','红薯','柿饼'] },
+    ],
+    story:'山西的腊八粥，别称「八宝粥」，以小米为主，附以豇豆、小豆、绿豆、小枣，再加黏黄米、大米、江米同煮。一锅里的豆、米、枣，都是黄土坡上耐旱的作物。晋东南更急：腊月初五就拿小豆、红豆、豇豆、红薯、花生、江米、柿饼合煮一锅「五豆粥」，先喝着，等初八再换正日子的一锅。',
+    tip:'黏黄米是山西腊八粥的骨架。凉了能切块，是冬天顶饿的一口。'
+  },
+  {
+    id:'kongfu-fine', no:'其三', name:'孔府上品咸粥', region:'曲阜', taste:'咸鲜',
+    desc:'孔府「细粥」的路子做咸口。不用盐，鲜味全从火腿和香蕈里吊。',
+    groups:[
+      { label:'细料先泡', note:'薏仁、莲子、百合都要泡透；莲子去芯，才不发苦。', items:['薏米','莲子','百合'] },
+      { label:'下米', note:'粳米与糯米同下：一个撑骨，一个使粥绵。', items:['大米','糯米'] },
+      { label:'咸鲜收口', note:'栗子增厚度，火腿与香菇把鲜味吊出来，不再放盐。', items:['栗子','火腿','香菇'] },
+    ],
+    story:'孔府食制把腊八粥分「细」「粗」两等。细粥用薏米仁、莲子、百合、栗子、红枣、桂圆、粳米熬成，供内宅主人与上供；盛在碗里后，还要摆上水果雕成的「粥果」。衍圣公府讲「食不厌精，脍不厌细」——连一碗粥的咸鲜，也要用火腿和香蕈慢慢吊，不肯用一把盐将就。',
+    tip:'孔府腊八还在府前「布粥」，四乡百姓排队领，一天要熬三大锅。'
+  },
+  {
+    id:'kongfu-thick', no:'其四', name:'孔府咸荤粥', region:'曲阜', taste:'咸荤',
+    desc:'孔府的「粗粥」，大米、肉片、白菜一锅端。给干活的人吃的。',
+    groups:[
+      { label:'先下豆', note:'粗粥也得有豆。豆烂了，汤才厚。', items:['豇豆','花生'] },
+      { label:'下米', note:'大锅熬，米要早下，熬到用勺一舀能挂住。', items:['大米','小米'] },
+      { label:'肉菜同入', note:'肉片、白菜、粉条一起下，一锅端上桌就是一顿饭。', items:['瘦肉丁','白菜','粉条'] },
+    ],
+    story:'同一个腊八，孔府还要熬一大锅「粗粥」：大米、肉片、白菜为主，分给府里的差役仆从。细粥配粥果，粗粥配力气——等级分明，却是同一个节日。这一款也最像北方普通人家的咸粥：有米、有菜、有肉，吃完好干活。',
+    tip:'肉片先用酱油抓一下，下锅才不柴；白菜要煮到透明，汤才甜。'
+  },
+  {
+    id:'sichuan', no:'其五', name:'川味腊八粥', region:'四川', taste:'咸香',
+    desc:'可盐可甜的四川腊八。腊肉香肠一化油，再配两块时令萝卜。',
+    groups:[
+      { label:'泡豆', note:'红豆、花生、莲子提前泡够，四川人在这事上舍得时间。', items:['红豆','花生','莲子'] },
+      { label:'下米与萝卜', note:'萝卜先下，甜味才进得了粥里；米跟着下锅。', items:['大米','糯米','萝卜'] },
+      { label:'腊味压轴', note:'腊肉、香肠、海米最后放，油一化，整锅都活了。', items:['腊肉','香肠','海米'] },
+    ],
+    story:'四川的腊八粥向来「可盐可甜」，乡坝头人家多爱吃咸的。腊肉、香肠是过年才舍得动的东西，切丁下锅，油花一化，粥就有了年味；再添两块时令萝卜，解腻又清甜。有人还要撒一把辣椒面——一碗粥能吃得冒汗，才算四川的冬天。',
+    tip:'川人熬咸粥爱配一碟泡萝卜：粥喝完了，萝卜还剩半碟。'
+  },
+  {
+    id:'jiangnan', no:'其六', name:'江南桂花赤豆粥', region:'苏杭', taste:'甜',
+    desc:'赤豆熬到起沙，血糯米染出紫红，起锅前撒一把糖桂花。',
+    groups:[
+      { label:'泡发豆芡', note:'赤小豆与芡实最硬，先下锅煮到开裂。', items:['赤小豆','花生','芡实'] },
+      { label:'下米同煮', note:'血糯米下锅，粥色立刻转红，此时要转小火。', items:['糯米','血糯米'] },
+      { label:'收尾添香', note:'栗子增厚，红枣增甜，桂花必须关火后撒。', items:['红枣','栗子','桂花'] },
+    ],
+    story:'苏州旧俗，腊八日煮赤豆粥，加糖桂花，甜糯清雅。更早的源头是汉魏的「赤豆打鬼」——腊日以赤豆粥逐疫，后来才与佛寺的供粥合流。一碗甜粥里，盛着两千年的除旧迎新。',
+    tip:'血糯米一入锅，粥色就从米白变成紫红，这是江南腊八粥的底色。'
+  },
+  {
+    id:'shangan', no:'其七', name:'陕甘咸腊八粥', region:'西北', taste:'咸',
+    desc:'不放糖。豆腐丁、腊肉、粉条一并入锅，一锅粥就是一顿饭。',
+    groups:[
+      { label:'先下豆', note:'黄豆、扁豆最结实，与冷水同时下锅。', items:['黄豆','扁豆','花生'] },
+      { label:'再下米', note:'小米、黄米打底，煮到稠而挂勺。', items:['小米','黄米'] },
+      { label:'最后咸料', note:'豆腐、腊肉、粉条最后放，滚两滚就起锅。', items:['豆腐','腊肉','粉条'] },
+    ],
+    story:'关中腊八讲究「咸香扎实」。粥里下豆腐丁、腊肉、粉条，一锅端上桌就是一顿正经饭。有的地方干脆不吃粥，腊八吃面，唤作「腊八面」。北地苦寒，唯有一锅滚烫能压住整个冬天的冷。',
+    tip:'西北人熬粥要用大锅，一家人围着锅吃，锅越深越保温。'
+  },
+  {
+    id:'diy', no:'其八', name:'自己配一锅', region:'自选', taste:'随你', diy:true, min:5, max:10,
+    desc:'主食打底、豆类定骨、其余随便加。没有标准方子，五到十样都由你。',
+    pools:[
+      { label:'一、选一类主食打底', note:'糯米、大米、小米、黑米、燕麦都行，糯米多放会更黏稠。',
+        items:['糯米','大米','小米','黑米','燕麦'] },
+      { label:'二、挑几样豆类', note:'红豆、芸豆、鹰嘴豆、绿豆，难煮的豆子最好提前泡 4 小时以上。',
+        items:['红豆','芸豆','鹰嘴豆','绿豆'] },
+      { label:'三、其余随便加', note:'花生、莲子、芡实、桂圆、红枣、葡萄干、核桃、栗子、百合；想吃咸口，再放萝卜、香菇、瘦肉丁。',
+        items:['花生','莲子','芡实','桂圆','红枣','葡萄干','核桃','栗子','百合','萝卜','香菇','瘦肉丁'] },
+    ],
+    story:'这是你自己配的一锅。腊八粥本来就没有标准方子——《燕京岁时记》记的用料，和千里之外另一口灶台上的，从来不会一样。谁家缸里有什么，就放什么；哪样多搁一把，就成了哪家的味道。',
+    tip:'怕不熟：豆子先泡、先下；怕不黏：糯米多放；怕腥：咸粥加一块拍过的姜。'
+  },
+];
+const TIMELINE = [
+  { era:'先秦 · 腊祭', title:'合聚百物而祭',
+    text:'「腊」本是岁终祭祀之名。农事已毕，人们猎取禽兽、聚起五谷，祭先祖、报百神，谢一年收成，也求来年顺遂。以谷粟为供、熬煮成食的做法，就藏在这场年终的烟火里。',
+    src:'《礼记·郊特牲》《风俗通义》' },
+  { era:'汉魏 · 逐疫', title:'赤豆打鬼，腊日驱疫',
+    text:'腊日成了一年中最重要的逐疫时节。人们以赤豆为食，相信红色与豆粒能压制邪祟——这就是「赤豆打鬼」的由来，也是江南赤豆粥真正的源头。',
+    src:'《荆楚岁时记》' },
+  { era:'南北朝 · 合流', title:'佛成道日与腊日撞在同一天',
+    text:'传释迦牟尼于十二月初八夜睹明星而悟道，寺院此日煮粥供佛，称「佛成道节」。恰与中原腊日同期，两套习俗就此合流：一边是祭祀，一边是供佛，中间是一锅粥。',
+    src:'寺院浴佛、供粥旧制' },
+  { era:'宋代 · 得名', title:'「腊八粥」三字，第一次写进书里',
+    text:'汴京诸大寺作浴佛会，送「七宝五味粥」与门徒，谓之腊八粥。临安大刹亦设五味粥。寺院施粥，民间仿效，腊八粥从供品变成了节日食品，也在这一年有了正式的名字。',
+    src:'孟元老《东京梦华录》· 吴自牧《梦粱录》' },
+  { era:'明清 · 极盛', title:'雍和宫的大铜锅',
+    text:'清代宫廷腊八粥极尽铺张，用大铜锅彻夜熬煮，分等级赐予王公、大臣、僧众。民间的「八宝」也在此期定型——八样只是一个说法，各地用料从七八种到二十余种不等，越富庶的地方放得越多。',
+    src:'清宫腊八赐粥旧制 · 富察敦崇《燕京岁时记》' },
+  { era:'近现代 · 分化', title:'一条淮河，两种腊八',
+    text:'北方甜粥讲八宝，江南赤豆撒桂花，西北咸粥下臊子豆腐，四川人可盐可甜，一碗粥能吃得冒汗。山东孔府更把同一口锅里的粥分成「细」「粗」两等：细粥配粥果，粗粥配力气。与粥并行的还有腊八蒜、腊八面、腊八豆腐、腊八冰。腊八不再只是一碗粥，而是一整套「开始过年」的仪式。',
+    src:'各地岁时风俗志' },
+];
+
+/* ==================================================================
+   工具
+   ================================================================== */
+const $  = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const N  = (t,c,h) => { const e=document.createElement(t); if(c) e.className=c; if(h!=null) e.innerHTML=h; return e; };
+
+/* 轻量音效 */
+let actx=null, muted=false;
+function blip(freq=440, dur=.12, type='sine', vol=.05){
+  if(muted) return;
+  try{
+    const AC = window.AudioContext||window.webkitAudioContext;
+    if(!AC) return;
+    actx = actx || new AC();
+    const o=actx.createOscillator(), g=actx.createGain();
+    o.type=type; o.frequency.value=freq;
+    g.gain.value=vol;
+    o.connect(g); g.connect(actx.destination);
+    o.start();
+    g.gain.exponentialRampToValueAtTime(.0001, actx.currentTime+dur);
+    o.stop(actx.currentTime+dur+.03);
+  }catch(e){}
+}
+
+/* ==================================================================
+   雪花
+   ================================================================== */
+(function snow(){
+  const cv=$('#snow'), ctx=cv.getContext('2d');
+  let W=0,H=0,flakes=[];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function resize(){
+    W=cv.width=innerWidth; H=cv.height=innerHeight;
+    flakes = Array.from({length: Math.min(70, Math.round(W/22))}, ()=>({
+      x:Math.random()*W, y:Math.random()*H,
+      r:Math.random()*1.7+.5,
+      vy:Math.random()*.5+.18,
+      vx:Math.random()*.3-.15,
+      a:Math.random()*.45+.16
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(const f of flakes){
+      ctx.beginPath();
+      ctx.fillStyle='rgba(255,244,228,'+f.a+')';
+      ctx.arc(f.x,f.y,f.r,0,7);
+      ctx.fill();
+      if(!reduce){
+        f.y+=f.vy; f.x+=f.vx+Math.sin(f.y/70)*.12;
+        if(f.y>H+6){ f.y=-6; f.x=Math.random()*W; }
+        if(f.x<-6) f.x=W+6; if(f.x>W+6) f.x=-6;
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  addEventListener('resize', resize);
+  resize(); draw();
+})();
+
+/* ==================================================================
+   渲染：选食谱 / 时序
+   ================================================================== */
+$('#recipeGrid').innerHTML = RECIPES.map((r,i)=>{
+  const n = r.diy ? '5–10' : r.groups.reduce((a,g)=>a+g.items.length,0);
+  return `
+  <button class="rc reveal${r.diy?' diy':''}" data-i="${i}" style="animation-delay:${i*60}ms">
+    <div class="idx">${r.no}</div>
+    <h3>${r.name}</h3>
+    <div class="tags"><span class="tag">${r.region}</span><span class="tag">${r.taste}</span>
+      <span class="tag">${n} 味</span></div>
+    <p>${r.desc}</p>
+    <div class="go">${r.diy?'自己配':'开始熬这锅'} <span>→</span></div>
+  </button>`;
+}).join('');
+
+$('#timeline').innerHTML = TIMELINE.map(t=>`
+  <div class="ti reveal">
+    <div class="era">${t.era}</div>
+    <h3>${t.title}</h3>
+    <p>${t.text}<span class="src">— ${t.src}</span></p>
+  </div>`).join('');
+
+/* 滚动入场 */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{ threshold:.15 });
+$$('.reveal').forEach(e=>io.observe(e));
+
+/* ==================================================================
+   状态
+   ================================================================== */
+let cur=null, stepIdx=0, added=new Set(), total=0;
+
+/* 视图模式：browse（浏览）/ cook（熬粥）/ result（成品） */
+function setMode(m){
+  document.body.classList.toggle('mode-cook', m==='cook');
+  document.body.classList.toggle('mode-result', m==='result');
+}
+
+function startRecipe(r, noScroll){
+  cur=r; stepIdx=0; added=new Set();
+  total = r.diy ? r.max : r.groups.reduce((a,g)=>a+g.items.length,0);
+
+  $('#pick').hidden = true;
+  $('#result').hidden = true;
+  $('#kitchen').hidden = false;
+  setMode('cook');
+  $('#kTitle').textContent = r.name;
+  $('#kSub').textContent = r.diy ? (r.region + ' · 任选 ' + r.min + '–' + r.max + ' 味')
+                                : (r.region + ' · ' + r.taste + '口 · 共 ' + total + ' 味');
+
+  // 重置锅
+  $('#contents').innerHTML='';
+  $('#soup').classList.remove('on');
+  $('#soupDark').style.opacity = 0;
+  $('#steam').classList.remove('on');
+  $('#ember').parentElement.classList.remove('cooking');
+  $('#lastInfo').innerHTML = '<p class="empty">锅已洗净，火已备好。<br>按左侧食谱的顺序，把食材放进锅里。</p>';
+  $('#infoTip').textContent = r.tip;
+  $('#total').textContent = total;
+
+  buildTray();
+  renderSteps();
+  updateCount();
+
+  if(!noScroll) document.getElementById('kitchen').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* 食材盘：打乱顺序，增加辨识；DIY 则按三类分组列出 */
+function makeBtn(n){
+  const b = N('button','tb');
+  b.dataset.name = n;
+  b.innerHTML = iconHTML(n, 20) + '<span>'+n+'</span>';
+  b.addEventListener('click', ()=> addItem(n, b));
+  return b;
+}
+
+function buildTray(){
+  const tray=$('#tray'); tray.innerHTML='';
+  if(cur.diy){
+    tray.classList.add('wide');
+    cur.pools.forEach(p=>{
+      const g = N('div','tray-group');
+      g.appendChild(N('div','gl', p.label));
+      p.items.forEach(n=> g.appendChild(makeBtn(n)));
+      tray.appendChild(g);
+    });
+    const b = N('button','cook-btn'); b.id='cookBtn';
+    tray.appendChild(b);
+    updateCookBtn();
+    return;
+  }
+  tray.classList.remove('wide');
+  const all = cur.groups.flatMap(g=>g.items);
+  const order = all.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+  order.forEach(n=> tray.appendChild(makeBtn(n)));
+}
+
+function renderSteps(){
+  const box=$('#steps'); box.innerHTML='';
+  if(cur.diy) return renderDiyGuide(box);
+  box.appendChild(N('div','steps-head','<span class="k">食谱教程</span><span class="k2">按工序下锅</span>'));
+  cur.groups.forEach((g,i)=>{
+    const d = N('div','step'+(i===stepIdx?' active':'')+(i<stepIdx?' done':''));
+    d.innerHTML =
+      '<h4><b>'+(i+1)+'</b>'+g.label+'</h4>'+
+      '<p class="note">'+g.note+'</p>'+
+      '<div class="items">'+g.items.map(n=>
+        '<span class="chip'+(added.has(n)?' on':'')+'">'+n+'</span>').join('')+'</div>';
+    box.appendChild(d);
+  });
+}
+
+/* DIY：三行搭配指南，已选的亮起 */
+function renderDiyGuide(box){
+  box.appendChild(N('div','steps-head','<span class="k">搭配指南</span><span class="k2">任选 '+cur.min+'–'+cur.max+' 样</span>'));
+  cur.pools.forEach((p,i)=>{
+    const hit = p.items.some(n=>added.has(n));
+    const d = N('div','step step-diy'+(hit?' touched':''));
+    d.innerHTML =
+      '<h4><b>'+(i+1)+'</b>'+p.label.replace(/^[一二三]、/,'')+'</h4>'+
+      '<p class="note">'+p.note+'</p>'+
+      '<div class="items">'+p.items.map(n=>
+        '<span class="chip'+(added.has(n)?' on':'')+'">'+n+'</span>').join('')+'</div>';
+    box.appendChild(d);
+  });
+  const left = cur.min - added.size;
+  box.appendChild(N('p','diy-hint', left>0
+    ? '还差 '+left+' 样才能起灶。主食是骨架，豆子定口感，其余随心。'
+    : '已经够了，随时可以起灶；还能再添 '+(cur.max-added.size)+' 样。'));
+}
+
+function updateCount(){
+  $('#count').textContent = added.size;
+  if(cur.diy){
+    $('#total').textContent = cur.min + '–' + cur.max;
+    $('#bar').style.width = Math.min(100, added.size/cur.max*100)+'%';
+    $('#stepLabel').textContent = added.size>=cur.min ? '可以起灶了' : '还差 '+(cur.min-added.size)+' 样';
+    return;
+  }
+  $('#bar').style.width = (added.size/total*100)+'%';
+  const labels=['第一道工序','第二道工序','第三道工序','第四道工序'];
+  $('#stepLabel').textContent = stepIdx<cur.groups.length ? labels[stepIdx] : '入锅完毕，起灶';
+}
+
+function updateCookBtn(){
+  const b=$('#cookBtn'); if(!b) return;
+  const need = cur.min - added.size;
+  b.disabled = need>0;
+  b.textContent = need>0 ? '起　灶（还差 '+need+' 样）' : '起　灶 · 开始熬';
+}
+
+/* ==================================================================
+   下锅
+   ================================================================== */
+let slot = 0;
+
+function addItem(name, btn){
+  if(added.has(name)) return;
+  if(cur.diy) return addDiy(name, btn);
+  const group = cur.groups[stepIdx];
+  if(!group) return;
+
+  if(!group.items.includes(name)){
+    // 放错了：提示 + 高亮当前该放的
+    wrongHint(name, group);
+    return;
+  }
+
+  added.add(name);
+  if(btn) btn.classList.add('added');
+
+  // 锅里出现食材
+  dropIntoPot(name, slot++);
+
+  // 侧栏
+  const info = ing_(name);
+  $('#lastInfo').innerHTML =
+    '<div class="last"><span class="last-ic">'+iconHTML(name,40)+'</span>'+
+    '<div><p class="nm">'+name+'</p><p class="ms">'+info.m+'</p></div></div>';
+
+  blip(520 + Math.random()*120, .09, 'sine', .045);
+
+  // 汤色 / 蒸汽随进度变浓
+  $('#soup').classList.add('on');
+  $('#soupDark').style.opacity = (added.size/total*0.62).toFixed(2);
+
+  // 组内是否放完
+  const done = group.items.every(n=>added.has(n));
+  if(done){
+    stepIdx++;
+    renderSteps();
+    updateCount();
+    if(stepIdx >= cur.groups.length){
+      setTimeout(beginCooking, 620);
+    }else{
+      setTimeout(()=>{
+        renderSteps();
+        blip(660,.1,'triangle',.05);
+      }, 320);
+    }
+  }else{
+    updateCount();
+    renderSteps();
+  }
+}
+
+/* DIY：自由下料，不判对错 */
+function addDiy(name, btn){
+  if(added.size >= cur.max){
+    toast('一锅最多 '+cur.max+' 样，再多就熬不开了');
+    return;
+  }
+  added.add(name);
+  if(btn) btn.classList.add('added');
+  dropIntoPot(name, slot++);
+  const info = ing_(name);
+  $('#lastInfo').innerHTML = '<div class="last"><span class="last-ic">'+iconHTML(name,40)+'</span>'+
+    '<div><p class="nm">'+name+'</p><p class="ms">'+info.m+'</p></div></div>';
+  blip(520 + Math.random()*120, .09, 'sine', .045);
+  $('#soup').classList.add('on');
+  $('#soupDark').style.opacity = (added.size/cur.max*0.62).toFixed(2);
+  updateCount(); renderSteps(); updateCookBtn();
+}
+
+function wrongHint(name, group){
+  const pot=$('#pot');
+  pot.classList.remove('shake'); void pot.offsetWidth; pot.classList.add('shake');
+  toast('莫急，「'+group.label+'」这一道还不该放 '+name);
+  blip(220,.16,'square',.035);
+  // 高亮应放的食材，降低难度
+  group.items.forEach(n=>{
+    const b = document.querySelector('.tb[data-name="'+n+'"]');
+    if(b && !added.has(b.dataset.name)){
+      b.classList.remove('pulse'); void b.offsetWidth; b.classList.add('pulse');
+    }
+  });
+}
+
+let toastTimer=null;
+function toast(msg){
+  const t=$('#toast');
+  t.textContent=msg; t.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('on'), 2200);
+}
+
+/* 把食材扔进汤面：用黄金角散布，避免重叠 */
+function dropIntoPot(name, i){
+  const box=$('#contents');
+  if(!box) return;
+  const a = i*2.39996 + Math.random()*.3;
+  const rr = .32 + .58*(((i*47)%100)/100);
+  const x = 50 + Math.cos(a)*36*rr;
+  const y = 50 + Math.sin(a)*23*rr;
+  const d = N('span','ing');
+  d.style.left = x.toFixed(1)+'%';
+  d.style.top  = y.toFixed(1)+'%';
+  const small = ['grain','dot'].includes(ing_(name).s);
+  d.innerHTML = iconHTML(name, small ? 16 : 21);
+  d.style.animationDelay = (Math.random()*2).toFixed(2)+'s';
+  box.appendChild(d);
+}
+
+/* ==================================================================
+   火候校准（原神式，宽松）
+   ================================================================== */
+const FIRES = [
+  { top:'第 一 道 火', title:'武火催沸', note:'大火滚开，逼出豆子的香气', speed:36, perfect:14, good:30 },
+  { top:'第 二 道 火', title:'文火慢煨', note:'转小火，让米与豆慢慢开花', speed:44, perfect:13, good:28 },
+  { top:'第 三 道 火', title:'收汤挂勺',   note:'汤稠了，再收一收，起锅', speed:52, perfect:12, good:26 },
+];
+
+const G = { round:0, pos:0, dir:1, speed:0, center:50, pw:0, gw:0, live:false, results:[], last:0, raf:0 };
+
+function beginCooking(){
+  $('#game').hidden = false;
+  G.round = 0; G.results = [];
+  renderDots();
+  $('#gFeed').textContent=''; $('#gFeed').classList.remove('on','bad');
+  nextRound();
+}
+
+function nextRound(){
+  const f = FIRES[G.round];
+  $('#gTop').textContent = f.top;
+  $('#gTitle').textContent = f.title;
+  $('#gNote').textContent = f.note;
+
+  G.speed = f.speed;
+  G.pw = f.perfect;
+  G.gw = f.good;
+  // 目标区随机落点，留足边距
+  G.center = 22 + Math.random()*56;
+
+  const gw = G.gw, pw = G.pw;
+  $('#gGood').style.left    = (G.center-gw/2)+'%';
+  $('#gGood').style.width   = gw+'%';
+  $('#gPerfect').style.left = (G.center-pw/2)+'%';
+  $('#gPerfect').style.width= pw+'%';
+
+  G.pos = 0; G.dir = 1; G.live = true; G.last = performance.now();
+  renderDots();
+  cancelAnimationFrame(G.raf);
+  G.raf = requestAnimationFrame(loop);
+}
+
+function loop(t){
+  if(!G.live) return;
+  const dt = Math.min((t-G.last)/1000, .05);
+  G.last = t;
+  G.pos += G.dir * G.speed * dt;
+  if(G.pos >= 100){ G.pos = 100; G.dir = -1; }
+  if(G.pos <= 0){ G.pos = 0; G.dir = 1; }
+  $('#gNeedle').style.left = G.pos + '%';
+  G.raf = requestAnimationFrame(loop);
+}
+
+function hit(){
+  if(!G.live) return;
+  G.live = false;
+  const d = Math.abs(G.pos - G.center);
+  let res, txt, cls='';
+  if(d <= G.pw/2){ res='perfect'; txt='完 美 火 候'; blip(880,.12,'sine',.06); setTimeout(()=>blip(1180,.16,'sine',.05),110); }
+  else if(d <= G.gw/2){ res='good'; txt='火 候 尚 可'; cls=''; blip(560,.12,'sine',.05); }
+  else { res='miss'; txt='火 候 过 了'; cls='bad'; blip(180,.2,'square',.04); }
+
+  G.results.push(res);
+  const feed=$('#gFeed');
+  feed.textContent = txt;
+  feed.classList.add('on'); feed.classList.toggle('bad', cls==='bad');
+  renderDots();
+
+  setTimeout(()=>{
+    feed.classList.remove('on');
+    G.round++;
+    if(G.round >= 3) endGame();
+    else nextRound();
+  }, 880);
+}
+
+function renderDots(){
+  const dots=$('#gDots').children;
+  for(let i=0;i<3;i++){
+    dots[i].className = '';
+    if(G.results[i]==='perfect') dots[i].classList.add('p');
+    else if(G.results[i]==='good') dots[i].classList.add('g');
+    else if(G.results[i]==='miss') dots[i].classList.add('b');
+  }
+}
+
+function endGame(){
+  cancelAnimationFrame(G.raf);
+  $('#game').hidden = true;
+
+  // 熬煮中
+  $('#pot').parentElement.classList.add('cooking');
+  $('#steam').classList.add('on');
+  const b=$('#boiling'); b.hidden=false;
+
+  setTimeout(()=>{
+    b.hidden = true;
+    showResult();
+  }, 2700);
+}
+
+/* ==================================================================
+   成品
+   ================================================================== */
+function showResult(){
+  const p = G.results.filter(r=>r==='perfect').length;
+  const g = G.results.filter(r=>r==='good').length;
+  const score = p*2 + g;
+
+  let badge, title;
+  if(score>=6){ badge='完美火候 · 粥色如珀'; title='这一锅，成了'; }
+  else if(score>=4){ badge='火候得当 · 香糯适口'; title='粥香已起'; }
+  else if(score>=2){ badge='略欠火候 · 米豆未全开'; title='还能更好'; }
+  else { badge='火候匆忙 · 但心意到了'; title='先盛一碗吧'; }
+
+  $('#rBadge').textContent = badge;
+  $('#rMeaning').innerHTML = usedItems().map(n=>{
+    const i = ing_(n);
+    return '<div class="mi"><p class="n">'+iconHTML(n,18)+n+'</p><p class="t">'+i.m+'</p></div>';
+  }).join('');
+
+  if(cur.diy){
+    const pick = cat => cur.pools[cat].items.filter(n=>added.has(n));
+    const M = pick(0), D = pick(1), O = pick(2);
+    $('#rTitle').textContent = '你的腊八粥 · ' + title;
+    $('#rStory').textContent =
+      '这一锅是你自己配的：主食「'+(M.join('、')||'略')+'」打底，豆类「'+(D.join('、')||'略')+'」定骨，'
+      +'另加'+(O.join('、')||'几样小料')+'，共 '+added.size+' 味。\n\n'
+      +'腊八粥本来就没有标准方子——《燕京岁时记》记下的用料，和千里之外另一口灶台上的从来不会一样。'
+      +'谁家缸里有什么就放什么，哪样多搁一把，就成了哪家的味道。这一锅，就是今年你家的那一锅。';
+  }else{
+    $('#rTitle').textContent = cur.name + ' · ' + title;
+    $('#rStory').textContent = cur.story;
+  }
+
+  $('#kitchen').hidden = true;
+  $('#result').hidden = false;
+  setMode('result');
+  $('#pot').parentElement.classList.remove('cooking');
+  $('#steam').classList.remove('on');
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ==================================================================
+   交互绑定
+   ================================================================== */
+document.addEventListener('click', e=>{
+  const card = e.target.closest('.rc');
+  if(card){ startRecipe(RECIPES[+card.dataset.i]); return; }
+  if(e.target.closest('#cookBtn') && added.size>=cur.min){ beginCooking(); }
+});
+
+$('#backBtn').addEventListener('click', backToPick);
+$('#pickBtn').addEventListener('click', backToPick);
+function backToPick(){
+  setMode('browse');
+  $('#kitchen').hidden = true;
+  $('#result').hidden = true;
+  $('#pick').hidden = false;
+  document.getElementById('pick').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* 成品页：继续读文化长文 */
+$('#readBtn').addEventListener('click', ()=>{
+  setMode('browse');
+  $('#kitchen').hidden = true;
+  $('#result').hidden = true;
+  $('#pick').hidden = false;
+  document.getElementById('culture').scrollIntoView({behavior:'smooth',block:'start'});
+});
+$('#againBtn').addEventListener('click', ()=> startRecipe(cur));
+
+/* 校准操作：点击遮罩 / 空格 */
+$('#game').addEventListener('click', hit);
+addEventListener('keydown', e=>{
+  if($('#game').hidden) return;
+  if(e.code==='Space' || e.key===' '){ e.preventDefault(); hit(); }
+});
+
+/* 声音开关 */
+$('#muteBtn').addEventListener('click', ()=>{
+  muted = !muted;
+  $('#muteBtn').textContent = muted ? '✕' : '♪';
+  $('#muteBtn').style.opacity = muted ? .45 : 1;
+});
+$('#topBtn').addEventListener('click', ()=> scrollTo({top:0,behavior:'smooth'}));
+
+/* 开发预览：?preview=kitchen / ?preview=result */
+const usedItems = () => cur.diy ? [...added] : cur.groups.flatMap(g=>g.items);
+
+(function debug(){
+  const sp = new URLSearchParams(location.search);
+  const q = sp.get('preview');
+  if(!q) return;
+  const r = q==='diy' ? RECIPES.find(x=>x.diy) : RECIPES[+(sp.get('i')||0)];
+  startRecipe(r, true);
+  if(q==='result' || q==='full'){
+    const list = cur.diy
+      ? cur.pools[0].items.slice(0,2).concat(cur.pools[1].items.slice(0,2), cur.pools[2].items.slice(0,3))
+      : cur.groups.flatMap(g=>g.items);
+    list.forEach(n=>{ added.add(n); if(q==='full') dropIntoPot(n, slot++); });
+    renderSteps(); updateCount(); updateCookBtn();
+    if(q==='result'){ G.results=['perfect','perfect','perfect']; showResult(); }
+  }
+  if(q==='fire'){
+    G.round = 1; G.results = ['perfect'];
+    beginCooking();
+  }
+})();
+</script>
+</body>
+</html>
